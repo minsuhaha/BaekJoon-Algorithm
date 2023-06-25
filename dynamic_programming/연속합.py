@@ -7,14 +7,13 @@ nums = list(map(int, input().split()))
 dp = [0]*n
 dp[0] = nums[0]
 
+# dp[현재값의인덱스] = max(이전dp + 현재값, 현재값)
 for i in range(1, n):
     dp[i] = max(dp[i-1]+nums[i], nums[i])
 
 print(max(dp))
 
 
-# dp[현재값의인덱스] = max(이전dp + 현재값, 현재값)
-    
     #       # 이전값 + 현재값      /   현재값
     # dp[2] = dp[1] + nums[1]  /  nums[1]  -> dp[2] = 6
     # dp[3] = dp[2] + nums[2]  /  nums[2]  -> dp[3] = 9
