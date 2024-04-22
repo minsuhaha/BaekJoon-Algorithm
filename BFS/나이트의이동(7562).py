@@ -10,10 +10,10 @@ dy = [2, 1, -1, -2, -2, -1, 1, 2]
 
 def bfs(x, y):
     queue = deque([(x, y)])
+    chess[x][y] = 1
     
     while queue:
         x, y = queue.popleft()
-        visited[x][y] = True
 
         for i in range(8):
             nx = x + dx[i]
@@ -21,10 +21,9 @@ def bfs(x, y):
 
             if nx < 0 or nx > l-1 or ny < 0 or ny > l-1:
                 continue
-            if not chess[nx][ny] and not visited[nx][ny]:
+            if not chess[nx][ny]:
                 chess[nx][ny] = chess[x][y] + 1
                 queue.append((nx, ny))
-                visited[nx][ny] = True
     return chess
 
 for _ in range(T):
@@ -33,8 +32,7 @@ for _ in range(T):
     end_x, end_y = map(int, input().split())
 
     chess = [[0]*l for _ in range(l)]
-    visited = [[False]*l for _ in range(l)]
 
     res = bfs(start_x, start_y)
-    print(res[end_x][end_y])
+    print(res[end_x][end_y]-1)
     
